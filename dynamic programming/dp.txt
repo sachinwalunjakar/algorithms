@@ -19,7 +19,7 @@ step for solving dynamic programming problems (top down approach):
   
 ** convert "iterative memoization solution" -> "space optimized iterative solution":
   steps:
-    1. observe "how one position in cache derived other position in cache?"
+    1. observe "how one position in cache derived from other position in cache?"
     2. identify "how we can reuse position in cache & reduce size of cache?" 
           e.g., in 2d cache if each row can be derived only using row above it, then we just need only two rows in cache
                 to find solution & with that we have reduce space complexity from O(n2) to O(n)
