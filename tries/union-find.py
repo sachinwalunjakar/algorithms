@@ -1,0 +1,60 @@
+class UnionFind:
+  def __init__(self, n=0):
+    self.par = {}
+    self.rank = {}
+
+    for i in range(1, n+1):
+      self.par[i] = i
+      self.rank[i] = 0
+
+
+  def find(self, n):
+    p = self.par[n]
+    while p != self.par[p]:
+      self.par[p] = self.par[self.par[p]]
+      p = self.par[p]
+    return p
+
+
+  def union(self, n1, n2):
+    p1, p2 = self.find(n1), self.find(n2)
+    if p1 == p2: # already connected, so no need to connect
+      return False
+    
+    if self.rank[p1] > self.rank[p2]:
+      self.par[p2] = p1
+    elif self.rank[p1] < self.rank[p2]:
+      self.par[p1] = p2
+    else:
+      self.par[p1] = p2
+      self.rank[p2] += 1
+    return True
+
+  ## using union find algorithm 
+
+  def isGraphConnected(self, numberOfNodes, edges):
+    self = UnionFind(numberOfNodes)
+    count = numberOfNodes # connect commponent count
+
+    for edge in edges:
+      if self.union(edge[0], edge[1]):
+        count -= 1
+    return count == 1
+
+  
+  def isCyclePresented(self, numberOfNodes, edges):
+    self = UnionFind(numberOfNodes)
+    
+    for edge in edges:
+      if not self.union(edge[0], edge[1]):
+        return True
+    return False
+
+
+
+
+if __name__ == "__main__":
+  edges = [[3,2], [1,3], [2,1]]
+  if UnionFind().isCyclePresented(3, edges):
+    print("graph contains cycle")
+

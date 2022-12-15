@@ -1,0 +1,36 @@
+
+step for solving dynamic programming problems (top down approach):
+|
+* brute force
+|
+* recursive memoization
+|
+* iterative memoization       <--- true dp solution
+|
+* space optimized iterative memoization
+
+
+** convert "recursive memoization solution" -> "iterative memoization solution":
+  steps:
+    1. observe "what each position in cache represent?"
+    2. observe "how cache get filled in recursive memoization solution?"
+    3. find way to fill cache in iterative way.
+    4. identify position in cache represent result & once that get filled then return value in that position.
+  
+** convert "iterative memoization solution" -> "space optimized iterative solution":
+  steps:
+    1. observe "how one position in cache derived other position in cache?"
+    2. identify "how we can reuse position in cache & reduce size of cache?" 
+          e.g., in 2d cache if each row can be derived only using row above it, then we just need only two rows in cache
+                to find solution & with that we have reduce space complexity from O(n2) to O(n)
+
+
+** dynamic programming is all about solving subproblems in efficient way, where we don't have to do repeated work.
+  solution to subproblems helps to solve bigger problems.
+
+** optimized solution for dp is solution where we use solution to sub problems to solve bigger problem 
+  and avoid repeated work.
+
+** approach for solving dp problem:
+  1. top down approach: start from main problem, divide it up to subproblems then solve subproblems and use its result to solve main problem
+  2. bottom up approach: start from subproblems, use its result to solve big problem
